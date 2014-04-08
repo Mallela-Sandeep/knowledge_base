@@ -62,8 +62,7 @@ KnowledgeBase::Application.routes.draw do
     resources :admins
   end
   
-  
-  
+  resources :posts
   resources :pages
-  root to: "pages#index"
+  root to: "posts#index"
 end
