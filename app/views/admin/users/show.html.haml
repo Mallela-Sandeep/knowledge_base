@@ -1,0 +1,88 @@
+- model_class = User
+.page-header
+  %h1= t '.title', :default => model_class.model_name.human.titleize
+%h3 Basic Information
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:email)
+      %th= model_class.human_attribute_name(:provider)
+      %th= model_class.human_attribute_name(:last_sign_in_at)
+      %th= model_class.human_attribute_name(:last_sign_ip)
+      %th= model_class.human_attribute_name(:created_at)
+      %th= t '.actions', :default => t("helpers.actions")
+  %tbody
+    %tr
+      %td= @user.email
+      %td= (@user.provider.blank?) ? 'General Registration' : @user.provider
+      %td= @user.last_sign_in_at.strftime("%Y-%m-%d") unless @user.last_sign_in_at.blank?
+      %td= @user.last_sign_in_ip  
+      %td= @user.created_at
+      %td
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_user_path(@user), :class => 'btn'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), admin_user_path(@user), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+%dl.dl-horizontal
+  - unless @user.profile.blank?
+    %h3 Profile Information
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:first_name)
+          %th= model_class.human_attribute_name(:last_name)
+          %th= model_class.human_attribute_name(:dob)
+          %th= model_class.human_attribute_name(:gender)
+          %th= model_class.human_attribute_name(:city)
+          %th= model_class.human_attribute_name(:state)
+          %th= model_class.human_attribute_name(:country)
+          %th= model_class.human_attribute_name(:zip)
+      %tbody
+        %tr
+          %td= @user.profile.first_name.blank? ? "-" : "#{@user.profile.first_name}"
+          %td= @user.profile.last_name.blank? ? "-" : "#{@user.profile.last_name}"
+          %td= @user.profile.dob.blank? ? "-" : "#{@user.profile.dob.strftime("%Y-%m-%d")}"
+          %td= @user.profile.gender.blank? ? "-" : "#{@user.profile.gender}"
+          %td= @user.profile.city.blank? ? "-" : "#{@user.profile.city}"
+          %td= @user.profile.state.blank? ? "-" : "#{@user.profile.state}"
+          %td= @user.profile.country.blank? ? "-" : "#{@user.profile.country}"
+          %td= @user.profile.zip.blank? ? "-" : "#{@user.profile.zip}"
+            
+  - unless @user.resumes.blank?
+    %h3
+      Resumes Attached
+    %table.table.table-striped
+      - @user.resumes.each do |r|
+        %tr
+          %td
+            %i.icon-file
+            = r.resume_file_name
+          %td
+          %td  
+            = link_to "Tracking Details", admin_trackers_path(:rid => r), :class => 'btn btn-primary' 
+            
+  -unless @user.subject_lines.blank?
+    %h3 
+      Subject Lines
+    %table.table.table-striped
+      %tr
+      - @user.subject_lines.each do |email_attribute|          
+        %tr
+          %td
+            = email_attribute.description 
+  -unless @user.cover_letters.blank?
+    %h3 Cover Letters
+    %table.table.table-striped
+      %tr
+      - @user.cover_letters.each do |email_attribute|          
+        %tr
+          %td
+            = email_attribute.description  
+  -unless @user.email_accounts.blank?
+    %h3 Email Accounts
+    %table.table.table-striped
+      - @user.email_accounts.each do |email_account|          
+        %tr
+          %td
+            = image_tag("#{email_account.service}-logo.png")
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), admin_users_path, :class => 'btn'
+

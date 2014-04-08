@@ -65,5 +65,5 @@ KnowledgeBase::Application.routes.draw do
   resources :posts
   resources :pages
   
-  root to: "posts#index"
+  root to: "pages#index"
 end
