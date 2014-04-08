@@ -57,3 +57,8 @@ gem "paperclip", "~> 3.0"
 # Improve error pages
 gem 'better_errors'
 gem "binding_of_caller"
+#Editor Plugins
+gem 'ckeditor'
+#Attachements
+gem 'carrierwave'
+gem 'mini_magick'
