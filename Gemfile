@@ -62,3 +62,5 @@ gem 'ckeditor'
 #Attachements
 gem 'carrierwave'
 gem 'mini_magick'
+#Nested Forms
+gem "nested_form"

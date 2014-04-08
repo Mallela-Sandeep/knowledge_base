@@ -83,6 +83,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.9.2)
     mysql2 (0.3.15)
+    nested_form (0.3.2)
     orm_adapter (0.5.0)
     paperclip (3.5.4)
       activemodel (>= 3.0.0)
@@ -162,6 +163,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   mysql2
+  nested_form
   paperclip (~> 3.0)
   protected_attributes
   rails (= 4.0.4)
