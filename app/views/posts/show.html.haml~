@@ -1,7 +1,0 @@
-%b
-  Title:
-= @post.title
-%br
-%b
-  Description:
-= @post.description

@@ -1,9 +1,0 @@
-%h1
-  Welcome to Knowledge base
-  
-- @posts.each do |post|
-  %b Title
-  = post.title
-  %b Description
-  = post.description
-  %br

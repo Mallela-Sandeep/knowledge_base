@@ -1,4 +1,0 @@
-%h1
-  Create a new post
-= render "form"
-
