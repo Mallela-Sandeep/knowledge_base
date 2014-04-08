@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @attachable = find_attachable
   end
 
   def update
@@ -31,6 +32,15 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_path, notice: 'Record was deleted successfully'
+  end
+
+  def find_attachable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
   
   private
